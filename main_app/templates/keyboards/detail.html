@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content  %}
+	
+<div class="card">
+	<div class="card-content">
+	  <span class="card-title">{{ keyboard.name }}</span>
+	  <p>Size: {{ keyboard.size }}</p>
+	  <p>Type: {{ keyboard.type }}</p>
+	  {% if keyboard.switches > 0 %}
+		<p>Switches: {{ keyboard.switches }}</p>
+	  {% else %}
+		<p>Switches: No Switches</p>
+	  {% endif %}
+	</div>
+  </div>
+{% endblock  %}
+	

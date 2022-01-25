@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %} {% for keyboard in keyboards %}
+
+<a href="{% url 'detail' keyboard.id %}">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ keyboard.name }}</span>
+      <p>size: {{ keyboard.size }}</p>
+      <p>type: {{ keyboard.type }}</p>
+      {% if keyboard.switches > 0 %}
+      <p>switches: {{ keyboard.switches }}</p>
+      {% else %}
+      <p>switches: No Switches</p>
+      {% endif %}
+    </div>
+  </div>
+</a>
+
+{% endfor %} {% endblock %}

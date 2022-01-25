@@ -14,11 +14,11 @@ def about(request):
 
 # Add new view
 def keyboards_index(request):
-    # retrieving all the cats from the db
+    # retrieving all the keyboards from the db
     keyboards = Keyboard.objects.all()
-    return render(request, 'keyboards/index.html', { 'keyboards': keyboards }) #'cats' is the name being called in the HTML, cats is what we are calling above
+    return render(request, 'keyboards/index.html', { 'keyboards': keyboards }) #'keyboards' is the name being called in the HTML, keyboards is what we are calling above
 
 def keyboards_detail(request, keyboard_id):
-    # find a cat by its id, cat_id is from the urls.py file for the cats_detail route
+    # find a keyboard by its id, keyboard_id is from the urls.py file for the keyboards_detail route
   keyboard = Keyboard.objects.get(id=keyboard_id)
   return render(request, 'keyboards/detail.html', { 'keyboard': keyboard })
