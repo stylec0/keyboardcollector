@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Stablizer List</h1>
+
+{% for stablizer in stablizer_list %}
+  <a href="{% url 'stablizers_detail' stablizer.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ stablizer.name }}</span>
+            <p>Color: {{ stablizer.color }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
