@@ -10,7 +10,7 @@ from .forms import KeycapForm
 
 class KeyboardCreate(CreateView):
     model = Keyboard
-    fields = '__all__'  # referring the models field, so what fields do you
+    fields = ['size', 'type', 'switches']  # referring the models field, so what fields do you
     # want to include on the form
 
 
@@ -75,7 +75,7 @@ def keyboards_index(request):
 def keyboards_detail(request, keyboard_id):
     # find a keyboard by its id, keyboard_id is from the urls.py file for the keyboards_detail route
     keyboard = Keyboard.objects.get(id=keyboard_id)
-    stablizers_keyboard_doesnt_have = Stablizer.objects.exclude(id__in = keyboard.stablizer.all().values_list('id'))
+    stablizers_keyboard_doesnt_have = Stablizer.objects.exclude(id__in = keyboard.stablizers.all().values_list('id'))
     keycap_form = KeycapForm()
 
     return render(request, 'keyboards/detail.html', {

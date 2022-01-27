@@ -1,32 +1,28 @@
-{% extends 'base.html' %}
-
-
-{% block content  %}
+{% extends 'base.html' %} {% block content %}
 <div class="row">
-    <div class="col s6">	
-<div class="card">
-	<div class="card-content">
-	  <span class="card-title">{{ keyboard.name }}</span>
-	  <p>Size: {{ keyboard.size }}</p>
-	  <p>Type: {{ keyboard.type }}</p>
-	  {% if keyboard.switches > 0 %}
-		<p>Switches: {{ keyboard.switches }}</p>
-	  {% else %}
-		<p>Switches: No Switches</p>
-	  {% endif %}
-	</div>
-    <div class="card-action">
-       <a href="{% url 'keyboards_update' keyboard.id %}">Edit</a>
-       <a href="{% url 'keyboards_delete' keyboard.id %}">Delete</a>
-     </div>
-   </div>
- </div>
- <div class="col s6">
-	<form method="post" action="{% url 'add_keycap' keyboard.id%}">
-		{% csrf_token %}
-		{{ keycap_form.as_p }}
-		<input type="submit" class="btn" value="Add Keycaps">
-	  </form>
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ keyboard.name }}</span>
+        <p>Size: {{ keyboard.size }}</p>
+        <p>Type: {{ keyboard.type }}</p>
+        {% if keyboard.switches > 0 %}
+        <p>Switches: {{ keyboard.switches }}</p>
+        {% else %}
+        <p>Switches: No Switches</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'keyboards_update' keyboard.id %}">Edit</a>
+        <a href="{% url 'keyboards_delete' keyboard.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <form method="post" action="{% url 'add_keycap' keyboard.id%}">
+      {% csrf_token %} {{ keycap_form.as_p }}
+      <input type="submit" class="btn" value="Add Keycaps" />
+    </form>
 
     <table class="striped">
       <thead>
@@ -48,59 +44,69 @@
 </div>
 
 <!-- This is all new markup to be added just above the <script> tag -->
-	<hr />
-	<div class="row">
-	  <div class="col s6">
-		<h3>{{ keyboard.name }}'s Stablizers</h3>
-		{% if keyboard.stablizers.count %} {% for stablizer in keyboard.stablizers.all %}
-		<div class="card">
-		  <div class="card-content">
-			<span class="card-title">
-			  A <span style="color: {{ stablizer.color }}">{{ stablizer.color }}</span> {{stablizer.name }}
-			</span>
-		  </div>
-		</div>
-		{% endfor %} {% else %}
-		<h5>Please pick a Stablizer</h5>
-		{% endif %}
-	  </div>
-	  <!-- Available toys will come after this line -->
-	  <div class="col s6">
-		<h3>Available Stablizers</h3>
-		{% if stablizers.count %}
-		  {% for stablizer in stablizers.all %}
-			<div class="card">s
-			  <div class="card-content">
-				<span class="card-title">
-				  A <span style="color: {{ stablizer.color }}">{{ stablizer.color }}</span> {{ stablizer.name }}
-				</span>
-			  </div>
-			  <div class="card-action">
-				<form action="{% url 'add_stablizer' keyboard.id stablizer.id %}" method="post">
-				  {% csrf_token %}
-				  <button type="submit" class="btn">Add</button>
-				</form>
-			  </div>
-			</div>
-		  {% endfor %}
-		{% else %}
-		  <h5>{{keyboard.name}} Has all stablizers</h5>
-		{% endif %}
-	  </div>
-	</div>
+<hr />
+<div class="row">
+  <div class="col s6">
+    <h3>{{ keyboard.name }}'s Stablizers</h3>
+    {% if keyboard.stablizers.count %} {% for stablizer in
+    keyboard.stablizers.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">
+          A
+          <span style="color: {{ stablizer.color }}"
+            >{{ stablizer.color }}</span
+          >
+          {{stablizer.name }}
+        </span>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>Please pick a Stablizer</h5>
+    {% endif %}
+  </div>
+  <!-- Available toys will come after this line -->
+  <div class="col s6">
+    <h3>Available Stablizers</h3>
+    {% if stablizers.count %} {% for stablizer in stablizers.all %}
+    <div class="card">
+      s
+      <div class="card-content">
+        <span class="card-title">
+          A
+          <span style="color: {{ stablizer.color }}"
+            >{{ stablizer.color }}</span
+          >
+          {{ stablizer.name }}
+        </span>
+      </div>
+      <div class="card-action">
+        <form
+          action="{% url 'add_stablizer' keyboard.id stablizer.id %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>{{keyboard.name}} Has all stablizers</h5>
+    {% endif %}
+  </div>
+</div>
 
 <script>
-	// date input
-	const dateEl = document.querySelector('#id_date');
-	M.Datepicker.init(dateEl, {
-		format: 'yyyy-mm-dd',
-		defaultDate: new Date(),
-		setDefaultDate: true,
-		autoClose: true
-	})
+  // date input
+  const dateEl = document.querySelector("#id_date");
+  M.Datepicker.init(dateEl, {
+    format: "yyyy-mm-dd",
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+  });
 
-	const selectEl = document.getElementById('id_profile')
-	M.FormSelect.init(selectEl)
+  const selectEl = document.getElementById("id_profile");
+  M.FormSelect.init(selectEl);
 </script>
-{% endblock  %}
-	
+{% endblock %}

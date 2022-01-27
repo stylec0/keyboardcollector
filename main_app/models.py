@@ -21,7 +21,10 @@ class Keyboard(models.Model):
     size = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     switches = models.TextField(max_length=250)
+    stablizers = models.ManyToManyField(Stablizer)
 
+    def __str__(self):
+        return self.name
 
 	  # Add this method
     def get_absolute_url(self):
