@@ -10,7 +10,7 @@ from .forms import KeycapForm
 
 class KeyboardCreate(CreateView):
     model = Keyboard
-    fields = ['size', 'type', 'switches']  # referring the models field, so what fields do you
+    fields = ['name', 'size', 'type', 'switches']  # referring the models field, so what fields do you
     # want to include on the form
 
 
@@ -27,10 +27,7 @@ class KeyboardDelete(DeleteView):
 
 def add_stablizer(request, keyboard_id, stablizer_id):
 
-  # associate a toy with a cat
-  # find the cat
   keyboard = Keyboard.objects.get(id=keyboard_id)
-  # associate the toy with the cat
   keyboard.stablizers.add(stablizer_id)
   return redirect('detail', keyboard_id=keyboard_id)
 
@@ -56,7 +53,7 @@ def add_keycap(request, keyboard_id):
 
 
 def home(request):
-    return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
+    return HttpResponse(request, 'home.html')
 
 
 def about(request):
