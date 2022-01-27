@@ -27,12 +27,8 @@ class Keyboard(models.Model):
     def __str__(self):
         return self.name
 
-	  # Add this method
     def get_absolute_url(self):
 
-	# detail is the url name of the page you want to go to
-	#kwargs are if there are any params in the route
-	# path('cats/<int:cat_id>/', views.cats_detail, name='detail'),
         return reverse('detail', kwargs={'keyboard_id': self.id})
 
 PROFILES = (
